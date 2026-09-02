@@ -22,5 +22,3 @@ git commit -m "Fixed lab assignment step 3"
 # 5. Upload your saved changes online
 git push origin main
 
-# !!WARNING !!
-Create a -gitignore file and put on it " *.class "(this for to not upload the compiled Java bytecode):

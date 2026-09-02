@@ -2,7 +2,7 @@
 git clone https://github.com/garcialuevanosaul-design/LabOne---Adv.-Object-Oriented-Programng.git
 
 # 2. Move your terminal into the project folder
-cd <FOLDER_NAME>
+cd Lab1_Chess_Validator
 
 # Identify yourself so Git knows who edited the file (If you're using VS Code -> Go to terminal -> Create new -> Select + bottom left -> Select Git Bash )
 git config --global user.name "Your Name"

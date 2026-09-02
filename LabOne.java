@@ -11,7 +11,6 @@ public class LabOne{
         public char pos_X;
         public int pos_Y;
     }
-
     public static boolean kingValidator(char pos_x, int pos_y){
         // Logic
     }
@@ -35,6 +34,7 @@ public class LabOne{
     public static boolean pawnValidator(char pos_x, int pos_y){
         // Logic
     }
+
     public static void main(String[] args){
         List<ChessPiece> chessList = new ArrayList<>(); // I decide to use an ArrayList because it's dynamic
         File file = new File("chess.txt");

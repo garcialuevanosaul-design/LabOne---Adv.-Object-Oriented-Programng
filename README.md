@@ -1,10 +1,10 @@
 # 1. Download the existing repository to your computer
-git clone [<REPOSITORY_URL>](https://github.com/garcialuevanosaul-design/LabOne---Adv.-Object-Oriented-Programng.git)
+git clone https://github.com/garcialuevanosaul-design/LabOne---Adv.-Object-Oriented-Programng.git
 
 # 2. Move your terminal into the project folder
 cd <FOLDER_NAME>
 
-# Identify yourself so Git knows who edited the file
+# Identify yourself so Git knows who edited the file (If you're using VS Code -> Go to terminal -> Create new -> Select + bottom left -> Select Git Bash )
 git config --global user.name "Your Name"
 git config --global user.email "your.email@example.com"
 
@@ -21,3 +21,6 @@ git commit -m "Fixed lab assignment step 3"
 
 # 5. Upload your saved changes online
 git push origin main
+
+# !!WARNING !!
+Create a -gitignore file and put on it " *.class "(this for to not upload the compiled Java bytecode):

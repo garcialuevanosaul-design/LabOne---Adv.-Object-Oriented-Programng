@@ -1,3 +1,12 @@
+// TEAM: Saul Garcia, Pablo Campos, Abdullah Abdmahdi
+// This is a small Chess Piece move validator. It reads a file with pieces, ask the user to input a move, and 
+// validate each piece
+
+// Log History
+// Change-1: Create the scanner and object
+// Change-2: Created the print verificator
+// Change-3: Added the logic for each piece
+// Change-4: Added the for loop to check the move input
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -13,10 +22,12 @@ public class LabOne {
         public int pos_Y;
     }
 
+    // Checks if the given board coordinates are within the valid 8x8 grid (A-H, 1-8).
     public static boolean positionValidator(char x, int y) {
         return x >= 'A' && x <= 'H' && y >= 1 && y <= 8;
     }
 
+    // Validates that the king moves exactly one square in any direction without staying in place.
     public static boolean kingValidator(ChessPiece piece, char targetX, int targetY) {
         if (!positionValidator(piece.pos_X, piece.pos_Y) ||
         !positionValidator(targetX, targetY)) {
@@ -29,6 +40,7 @@ public class LabOne {
         return dx <= 1 && dy <= 1 && (dx != 0 || dy != 0);
     }
 
+    // Validates that the rook moves any distance along the same row or column without staying in place.
     public static boolean rookValidator(ChessPiece piece, char targetX, int targetY) {
         if (!positionValidator(piece.pos_X, piece.pos_Y) || !positionValidator(targetX, targetY)) {
 
@@ -41,6 +53,7 @@ public class LabOne {
         return (dx == 0 || dy == 0) && (dx != 0 || dy != 0);
     }
 
+    // Validates that the queen moves straight (like a rook) or diagonally (like a bishop) without staying in place.
     public static boolean queenValidator(ChessPiece piece, char targetX, int targetY) {
         if (!positionValidator(piece.pos_X, piece.pos_Y) ||
             !positionValidator(targetX, targetY)) {
@@ -54,6 +67,7 @@ public class LabOne {
                 && (dx != 0 || dy != 0);
     }
 
+    // Validates that the bishop moves any distance along a diagonal without staying in place.
     public static boolean knightValidator(ChessPiece piece, char targetX, int targetY) {
         if (!positionValidator(piece.pos_X, piece.pos_Y) ||
             !positionValidator(targetX, targetY)) {
@@ -78,7 +92,7 @@ public class LabOne {
         return dx == dy && dx != 0;
     }
 
-
+    // Validates that the pawn moves forward exactly one square in the same column based on its color.
     public static boolean pawnValidator(ChessPiece piece, char targetX, int targetY) {
         if (!positionValidator(piece.pos_X, piece.pos_Y) ||
             !positionValidator(targetX, targetY)) {

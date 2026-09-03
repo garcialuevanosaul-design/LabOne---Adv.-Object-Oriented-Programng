@@ -13,28 +13,90 @@ public class LabOne {
         public int pos_Y;
     }
 
-    public static boolean kingValidator(char pos_x, int pos_y) {
-        // Logic
+    public static boolean positionValidator(char x, int y) {
+        return x >= 'A' && x <= 'H' && y >= 1 && y <= 8;
     }
 
-    public static boolean rookValidator(char pos_x, int pos_y) {
-        // Logic
+    public static boolean kingValidator(ChessPiece piece, char targetX, int targetY) {
+        if (!positionValidator(piece.pos_X, piece.pos_Y) ||
+        !positionValidator(targetX, targetY)) {
+        return false;
+        }
+
+        int dx = Math.abs(targetX - piece.pos_X);
+        int dy = Math.abs(targetY - piece.pos_Y);
+
+        return dx <= 1 && dy <= 1 && (dx != 0 || dy != 0);
     }
 
-    public static boolean queenValidator(char pos_x, int pos_y) {
-        // Logic
+    public static boolean rookValidator(ChessPiece piece, char targetX, int targetY) {
+        if (!positionValidator(piece.pos_X, piece.pos_Y) || !positionValidator(targetX, targetY)) {
+
+            return false;
+        }
+
+        int dx = Math.abs(targetX - piece.pos_X);
+        int dy = Math.abs(targetY - piece.pos_Y);
+
+        return (dx == 0 || dy == 0) && (dx != 0 || dy != 0);
     }
 
-    public static boolean bishopValidator(char pos_x, int pos_y) {
-        // Logic
+    public static boolean queenValidator(ChessPiece piece, char targetX, int targetY) {
+        if (!positionValidator(piece.pos_X, piece.pos_Y) ||
+            !positionValidator(targetX, targetY)) {
+            return false;
+        }
+
+        int dx = Math.abs(targetX - piece.pos_X);
+        int dy = Math.abs(targetY - piece.pos_Y);
+
+        return ((dx == 0 || dy == 0) || dx == dy)
+                && (dx != 0 || dy != 0);
     }
 
-    public static boolean knightValidator(char pos_x, int pos_y) {
-        // Logic
+    public static boolean bishopValidator(ChessPiece piece, char targetX, int targetY) {
+        if (!positionValidator(piece.pos_X, piece.pos_Y) ||
+            !positionValidator(targetX, targetY)) {
+            return false;
+        }
+
+        int dx = Math.abs(targetX - piece.pos_X);
+        int dy = Math.abs(targetY - piece.pos_Y);
+
+        return dx == dy && dx != 0;
     }
 
-    public static boolean pawnValidator(char pos_x, int pos_y) {
-        // Logic
+    public static boolean knightValidator(ChessPiece piece, char targetX, int targetY) {
+        if (!positionValidator(piece.pos_X, piece.pos_Y) ||
+            !positionValidator(targetX, targetY)) {
+            return false;
+        }
+
+        int dx = Math.abs(targetX - piece.pos_X);
+        int dy = Math.abs(targetY - piece.pos_Y);
+
+        return (dx == 2 && dy == 1) || (dx == 1 && dy == 2);
+    }
+
+    public static boolean pawnValidator(ChessPiece piece, char targetX, int targetY) {
+        if (!positionValidator(piece.pos_X, piece.pos_Y) ||
+            !positionValidator(targetX, targetY)) {
+            return false;
+        }
+
+        if (targetX != piece.pos_X) {
+            return false;
+        }
+
+        if (piece.color.equals("White")) {
+            return targetY == piece.pos_Y + 1;
+        }
+
+        if (piece.color.equals("Black")) {
+            return targetY == piece.pos_Y - 1;
+        }
+
+        return false;
     }
 
     // Printing Verification:

@@ -54,18 +54,6 @@ public class LabOne {
                 && (dx != 0 || dy != 0);
     }
 
-    public static boolean bishopValidator(ChessPiece piece, char targetX, int targetY) {
-        if (!positionValidator(piece.pos_X, piece.pos_Y) ||
-            !positionValidator(targetX, targetY)) {
-            return false;
-        }
-
-        int dx = Math.abs(targetX - piece.pos_X);
-        int dy = Math.abs(targetY - piece.pos_Y);
-
-        return dx == dy && dx != 0;
-    }
-
     public static boolean knightValidator(ChessPiece piece, char targetX, int targetY) {
         if (!positionValidator(piece.pos_X, piece.pos_Y) ||
             !positionValidator(targetX, targetY)) {
@@ -78,6 +66,19 @@ public class LabOne {
         return (dx == 2 && dy == 1) || (dx == 1 && dy == 2);
     }
 
+    public static boolean bishopValidator(ChessPiece piece, char targetX, int targetY) {
+        if (!positionValidator(piece.pos_X, piece.pos_Y) ||
+            !positionValidator(targetX, targetY)) {
+            return false;
+        }
+
+        int dx = Math.abs(targetX - piece.pos_X);
+        int dy = Math.abs(targetY - piece.pos_Y);
+
+        return dx == dy && dx != 0;
+    }
+
+
     public static boolean pawnValidator(ChessPiece piece, char targetX, int targetY) {
         if (!positionValidator(piece.pos_X, piece.pos_Y) ||
             !positionValidator(targetX, targetY)) {
@@ -88,11 +89,11 @@ public class LabOne {
             return false;
         }
 
-        if (piece.color.equals("White")) {
+        if (piece.color.equalsIgnoreCase("White")) {
             return targetY == piece.pos_Y + 1;
         }
 
-        if (piece.color.equals("Black")) {
+        if (piece.color.equalsIgnoreCase("Black")) {
             return targetY == piece.pos_Y - 1;
         }
 
@@ -130,7 +131,7 @@ public class LabOne {
 
                         piece.name = rowScanner.next();
                         piece.color = rowScanner.next();
-                        piece.pos_X = rowScanner.next().charAt(0);
+                        piece.pos_X = Character.toUpperCase(rowScanner.next().charAt(0));
                         piece.pos_Y = rowScanner.nextInt();
 
                         chessList.add(piece);
@@ -138,10 +139,38 @@ public class LabOne {
                 }
             }
             System.out.print("Enter a position to move (e.g. E,1): ");
-            userInput.useDelimiter(",");
+            userInput.useDelimiter("\\s*,\\s*|\\s+");
 
-            char pos_x = userInput.next().charAt(0);
-            int age = userInput.nextInt();
+            char pos_x = Character.toUpperCase(userInput.next().charAt(0));
+            int pos_y = userInput.nextInt();
+
+            for (ChessPiece piece : chessList) {
+                if(piece.name.equalsIgnoreCase("king")){
+                    boolean is_valid = kingValidator(piece, pos_x, pos_y);
+                    printVerification(piece, pos_x, pos_y, is_valid);
+
+                }else if(piece.name.equalsIgnoreCase("rook")){
+                    boolean is_valid = rookValidator(piece, pos_x, pos_y);
+                    printVerification(piece, pos_x, pos_y, is_valid); 
+
+                }else if(piece.name.equalsIgnoreCase("queen")){
+                    boolean is_valid = queenValidator(piece, pos_x, pos_y);
+                    printVerification(piece, pos_x, pos_y, is_valid); 
+
+                }else if(piece.name.equalsIgnoreCase("bishop")){
+                    boolean is_valid = bishopValidator(piece, pos_x, pos_y);
+                    printVerification(piece, pos_x, pos_y, is_valid);
+
+                }else if(piece.name.equalsIgnoreCase("pawn")){
+                    boolean is_valid = pawnValidator(piece, pos_x, pos_y);
+                    printVerification(piece, pos_x, pos_y, is_valid);   
+
+                }else if(piece.name.equalsIgnoreCase("knight")){
+                    boolean is_valid = knightValidator(piece, pos_x, pos_y);
+                    printVerification(piece, pos_x, pos_y, is_valid);                    
+                }
+            }
+            
 
         } catch (FileNotFoundException e) {
             System.out.println("Error: The file could not be found.");

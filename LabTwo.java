@@ -2,6 +2,7 @@ import java.util.Scanner;
 
 public class LabTwo {
 
+    // Enum containing the available chess piece types
     enum PieceType {
         PAWN, ROOK, KNIGHT, BISHOP, QUEEN, KING
     }
@@ -11,7 +12,9 @@ public class LabTwo {
 
         String anotherPiece = "YES";
 
+        // Allows the user to select and test multiple chess pieces
         while (anotherPiece.equalsIgnoreCase("YES")) {
+            // Gets and validates the chess piece selected by the user
             PieceType pieceType = null;
 
             while (pieceType == null) {
@@ -25,6 +28,7 @@ public class LabTwo {
                 }
             }
 
+            // Gets and validates the color of the chess piece
             String color = "";
 
             while (!color.equals("WHITE") && !color.equals("BLACK")) {
@@ -36,6 +40,7 @@ public class LabTwo {
                 }
             }
 
+            // Gets and validates the original position of the chess piece
             String currentColumnInput = "";
 
             while (currentColumnInput.length() != 1) {
@@ -77,10 +82,11 @@ public class LabTwo {
                 currentRow = input.nextInt();
                 input.nextLine();
             }
-
+            // Allows multiple target positions to be tested from the same original position
             String anotherTarget = "YES";
 
             while (anotherTarget.equalsIgnoreCase("YES")) {
+                // Gets and validates the target position
                 String targetColumnInput = "";
 
                 while (targetColumnInput.length() != 1) {
@@ -123,6 +129,7 @@ public class LabTwo {
                     input.nextLine();
                 }
 
+                // Prevents the target position from being the same as the original position
                 while (targetColumn == currentColumn && targetRow == currentRow) {
                     System.out.println("Target position cannot be the same as the current position.");
 
@@ -158,6 +165,7 @@ public class LabTwo {
                     }
                 }
 
+                // Creates the selected chess piece and checks if the requested move is valid
                 if (pieceType == PieceType.PAWN) {
                     Pawn pawn = new Pawn("PAWN", color, currentColumn, currentRow);
                     boolean validMove = pawn.pawnValidator(targetColumn, targetRow);
@@ -214,6 +222,7 @@ public class LabTwo {
                     }
                 }
 
+                // Asks the user if they want to test another target position
                 System.out.println("Verify another target position using the same original position? (YES/NO): ");
                 anotherTarget = input.nextLine().toUpperCase();
                 while (!anotherTarget.equals("YES") && !anotherTarget.equals("NO")) {
@@ -223,6 +232,8 @@ public class LabTwo {
                 }
 
             }
+
+            // Asks the user if they want to test another chess piece
             System.out.println("Would you like to select another chess piece? (YES/NO): ");
             anotherPiece = input.nextLine().toUpperCase();
             while (!anotherPiece.equals("YES") && !anotherPiece.equals("NO")) {

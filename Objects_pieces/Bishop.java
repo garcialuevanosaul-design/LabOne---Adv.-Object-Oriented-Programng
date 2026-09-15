@@ -16,8 +16,8 @@ class Bishop{
     public Bishop(String pieceName, String pieceColor, char start_pos_X, int start_pos_Y){
         name = pieceName;
         color = pieceColor;
-        start_pos_X = pos_X;
-        start_pos_Y = pos_Y;
+        pos_X = start_pos_X;
+        pos_Y = start_pos_Y;
     }
 
     // SETTERS

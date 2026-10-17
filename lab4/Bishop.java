@@ -1,6 +1,6 @@
 package lab4;
 
-class Bishop implements IntBishop {
+public class Bishop implements IntBishop {
     private Color color;
     private LocationX pos_X;
     private int pos_Y;

@@ -1,6 +1,6 @@
 package lab4;
 
-class Pawn extends Figure {
+public class Pawn extends Figure {
 
     // Empty Constructor
     public Pawn() {
@@ -13,23 +13,35 @@ class Pawn extends Figure {
         super(pieceName, pieceColor, start_pos_X, start_pos_Y);
     }
 
-    // Validates that the pawn moves forward one square
-    // in the same column based on its color.
+    // Checks if the Pawn can move to the target position
     @Override
     public boolean moveTo(LocationX targetX, int targetY) {
-        if (targetX != getPos_X()) {
+
+        try {
+            ChessBoard board = new ChessBoard();
+
+            if (!board.verifyCoordinate(targetX, targetY)) {
+                throw new IllegalArgumentException("Invalid target position.");
+            }
+
+            if (targetX != getPos_X()) {
+                return false;
+            }
+
+            if (getColor() == Color.WHITE) {
+                return targetY == getPos_Y() + 1;
+            }
+
+            if (getColor() == Color.BLACK) {
+                return targetY == getPos_Y() - 1;
+            }
+
+            return false;
+
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
             return false;
         }
-
-        if (getColor() == Color.WHITE) {
-            return targetY == getPos_Y() + 1;
-        }
-
-        if (getColor() == Color.BLACK) {
-            return targetY == getPos_Y() - 1;
-        }
-
-        return false;
     }
 
     @Override

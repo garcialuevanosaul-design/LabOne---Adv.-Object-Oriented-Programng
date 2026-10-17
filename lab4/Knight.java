@@ -1,6 +1,6 @@
 package lab4;
 
-class Knight extends Figure {
+public class Knight extends Figure {
 
     // Empty Constructor
     public Knight() {
@@ -13,14 +13,26 @@ class Knight extends Figure {
         super(pieceName, pieceColor, start_pos_X, start_pos_Y);
     }
 
-    // Validates that the knight moves in an L-shape.
+    // Validates that the Knight moves in an L-shape
     @Override
     public boolean moveTo(LocationX targetX, int targetY) {
 
-        int dx = Math.abs(targetX.ordinal() - getPos_X().ordinal());
-        int dy = Math.abs(targetY - getPos_Y());
+        try {
+            ChessBoard board = new ChessBoard();
 
-        return (dx == 2 && dy == 1) || (dx == 1 && dy == 2);
+            if (!board.verifyCoordinate(targetX, targetY)) {
+                throw new IllegalArgumentException("Invalid target position.");
+            }
+
+            int dx = Math.abs(targetX.ordinal() - getPos_X().ordinal());
+            int dy = Math.abs(targetY - getPos_Y());
+
+            return (dx == 2 && dy == 1) || (dx == 1 && dy == 2);
+
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
     }
 
     @Override

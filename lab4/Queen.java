@@ -1,6 +1,6 @@
 package lab4;
 
-class Queen extends Rook implements IntBishop {
+public class Queen extends Rook implements IntBishop {
 
     // Constructor with parameters
     public Queen(PieceType pieceName, Color pieceColor,
@@ -8,13 +8,26 @@ class Queen extends Rook implements IntBishop {
         super(pieceName, pieceColor, start_pos_X, start_pos_Y);
     }
 
-    // Queen can move diagonally like a bishop
+    // Queen can move diagonally like a Bishop
     @Override
     public boolean moveToBishop(LocationX targetX, int targetY) {
-        int dx = Math.abs(targetX.ordinal() - getPos_X().ordinal());
-        int dy = Math.abs(targetY - getPos_Y());
 
-        return dx == dy && dx != 0;
+        try {
+            ChessBoard board = new ChessBoard();
+
+            if (!board.verifyCoordinate(targetX, targetY)) {
+                throw new IllegalArgumentException("Invalid target position.");
+            }
+
+            int dx = Math.abs(targetX.ordinal() - getPos_X().ordinal());
+            int dy = Math.abs(targetY - getPos_Y());
+
+            return dx == dy && dx != 0;
+
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
     }
 
     // Queen moves like a rook or bishop

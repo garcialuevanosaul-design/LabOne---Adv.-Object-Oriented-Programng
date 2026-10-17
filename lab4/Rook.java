@@ -1,6 +1,6 @@
 package lab4;
 
-class Rook extends Figure {
+public class Rook extends Figure {
 
     // Empty Constructor
     public Rook() {
@@ -13,14 +13,26 @@ class Rook extends Figure {
         super(pieceName, pieceColor, start_pos_X, start_pos_Y);
     }
 
-    // Validates that the rook moves along the same row or column
-    // without staying in the same position.
+    // Validates that the Rook moves along the same row or column
     @Override
     public boolean moveTo(LocationX targetX, int targetY) {
-        int dx = Math.abs(targetX.ordinal() - getPos_X().ordinal());
-        int dy = Math.abs(targetY - getPos_Y());
 
-        return (dx == 0 || dy == 0) && (dx != 0 || dy != 0);
+        try {
+            ChessBoard board = new ChessBoard();
+
+            if (!board.verifyCoordinate(targetX, targetY)) {
+                throw new IllegalArgumentException("Invalid target position.");
+            }
+
+            int dx = Math.abs(targetX.ordinal() - getPos_X().ordinal());
+            int dy = Math.abs(targetY - getPos_Y());
+
+            return (dx == 0 || dy == 0) && (dx != 0 || dy != 0);
+
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
     }
 
     @Override

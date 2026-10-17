@@ -1,6 +1,6 @@
 package lab4;
 
-class King extends Queen {
+public class King extends Queen {
 
     // Constructor with parameters
     public King(PieceType pieceName, Color pieceColor,
@@ -11,10 +11,23 @@ class King extends Queen {
     // King can move one square in any direction
     @Override
     public boolean moveTo(LocationX targetX, int targetY) {
-        int dx = Math.abs(targetX.ordinal() - getPos_X().ordinal());
-        int dy = Math.abs(targetY - getPos_Y());
 
-        return dx <= 1 && dy <= 1 && (dx != 0 || dy != 0);
+        try {
+            ChessBoard board = new ChessBoard();
+
+            if (!board.verifyCoordinate(targetX, targetY)) {
+                throw new IllegalArgumentException("Invalid target position.");
+            }
+
+            int dx = Math.abs(targetX.ordinal() - getPos_X().ordinal());
+            int dy = Math.abs(targetY - getPos_Y());
+
+            return dx <= 1 && dy <= 1 && (dx != 0 || dy != 0);
+
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
     }
 
     @Override

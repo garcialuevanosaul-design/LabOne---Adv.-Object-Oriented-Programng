@@ -1,24 +1,29 @@
-class Pawn extends Figure{
+class Pawn extends Figure {
+
     // Empty Constructor
-    public Pawn(){
-        super(); // Calling the Figure empty constructor
+    public Pawn() {
+        super();
     }
+
     // Constructor with parameters
-    public Pawn(String pieceName, String pieceColor, char start_pos_X, int start_pos_Y){
-        super(pieceName,pieceColor,start_pos_X,start_pos_Y );
+    public Pawn(PieceType pieceName, Color pieceColor,
+            LocationX start_pos_X, int start_pos_Y) {
+        super(pieceName, pieceColor, start_pos_X, start_pos_Y);
     }
-    // Validates that the pawn moves forward exactly one square in the same column based on its color.
+
+    // Validates that the pawn moves forward one square
+    // in the same column based on its color.
     @Override
-    public boolean moveTo(char targetX, int targetY) {
+    public boolean moveTo(LocationX targetX, int targetY) {
         if (targetX != getPos_X()) {
             return false;
         }
 
-        if (getColor().equalsIgnoreCase("White")) {
+        if (getColor() == Color.WHITE) {
             return targetY == getPos_Y() + 1;
         }
 
-        if (getColor().equalsIgnoreCase("Black")) {
+        if (getColor() == Color.BLACK) {
             return targetY == getPos_Y() - 1;
         }
 
@@ -26,7 +31,7 @@ class Pawn extends Figure{
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return "Color: " + getColor() + "\n"
                 + "Position X: " + getPos_X() + "\n"
                 + "Position Y: " + getPos_Y();

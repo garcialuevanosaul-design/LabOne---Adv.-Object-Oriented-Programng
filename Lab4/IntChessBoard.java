@@ -1,4 +1,4 @@
-public interface IntChessBoard{
-    
-    boolean verifyCoordinate(char X, int Y);
+public interface IntChessBoard {
+
+    boolean verifyCoordinate(LocationX X, int Y);
 }

@@ -1,56 +1,58 @@
-class Bishop implements IntBishop{
-    private String color;
-    private char pos_X;
+class Bishop implements IntBishop {
+    private Color color;
+    private LocationX pos_X;
     private int pos_Y;
 
     // Empty Constructor
-    public Bishop(){}
+    public Bishop() {
+    }
 
-    public Bishop(String pieceColor, char start_pos_X, int start_pos_Y){
+    // Constructor with parameters
+    public Bishop(Color pieceColor, LocationX start_pos_X, int start_pos_Y) {
         this.color = pieceColor;
         this.pos_X = start_pos_X;
         this.pos_Y = start_pos_Y;
     }
 
     // SETTERS
-
-    public void setColor(String newColor){
+    public void setColor(Color newColor) {
         color = newColor;
     }
 
-    public void setPos_X(char newPosition){
+    public void setPos_X(LocationX newPosition) {
         pos_X = newPosition;
     }
 
-    public void setPos_Y(int newPosition){
+    public void setPos_Y(int newPosition) {
         pos_Y = newPosition;
     }
 
     // GETTERS
-    public String getColor(){
+    public Color getColor() {
         return color;
     }
 
-    public char getPos_X(){
+    public LocationX getPos_X() {
         return pos_X;
     }
 
-    public int getPos_Y(){
+    public int getPos_Y() {
         return pos_Y;
     }
 
+    // Bishop moves diagonally
     @Override
-    public String toString(){
-        return "Color: " + getColor() + "\n"
-                + "Position X: " + getPos_X() + "\n"
-                + "Position Y: " + getPos_Y();
-    }
-
-    @Override
-    public boolean moveToBishop(char targetX, int targetY) {
-        int dx = Math.abs(targetX - getPos_X());
+    public boolean moveToBishop(LocationX targetX, int targetY) {
+        int dx = Math.abs(targetX.ordinal() - getPos_X().ordinal());
         int dy = Math.abs(targetY - getPos_Y());
 
         return dx == dy && dx != 0;
+    }
+
+    @Override
+    public String toString() {
+        return "Color: " + getColor() + "\n"
+                + "Position X: " + getPos_X() + "\n"
+                + "Position Y: " + getPos_Y();
     }
 }

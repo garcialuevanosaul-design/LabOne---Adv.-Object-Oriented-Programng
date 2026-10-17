@@ -1,3 +1,3 @@
-public interface IntFigure{
-    boolean moveTo(char targetX, int targetY);
+public interface IntFigure {
+    boolean moveTo(LocationX targetX, int targetY);
 }

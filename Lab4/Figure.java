@@ -1,19 +1,20 @@
-abstract class Figure implements IntFigure{
-    private String name;
-    private String color;
-    private char pos_X;
+public abstract class Figure implements IntFigure {
+    private PieceType name;
+    private Color color;
+    private LocationX pos_X;
     private int pos_Y;
 
     // Empty Constructor
-    public Figure(){
-        name = "";
-        color = "";
-        pos_X = '\0';
+    public Figure() {
+        name = null;
+        color = null;
+        pos_X = null;
         pos_Y = 0;
     }
 
     // Constructor with parameters
-    public Figure(String pieceName, String pieceColor, char start_pos_X, int start_pos_Y){
+    public Figure(PieceType pieceName, Color pieceColor,
+            LocationX start_pos_X, int start_pos_Y) {
         this.name = pieceName;
         this.color = pieceColor;
         this.pos_X = start_pos_X;
@@ -22,29 +23,33 @@ abstract class Figure implements IntFigure{
 
     // SETTERS
 
-    public void setColor(String newColor){
+    public void setColor(Color newColor) {
         color = newColor;
     }
 
-    public void setPos_X(char newPosition){
+    public void setPos_X(LocationX newPosition) {
         pos_X = newPosition;
     }
 
-    public void setPos_Y(int newPosition){
+    public void setPos_Y(int newPosition) {
         pos_Y = newPosition;
     }
 
     // GETTERS
 
-    public String getColor(){
+    public PieceType getName() {
+        return name;
+    }
+
+    public Color getColor() {
         return color;
     }
 
-    public char getPos_X(){
+    public LocationX getPos_X() {
         return pos_X;
     }
 
-    public int getPos_Y(){
+    public int getPos_Y() {
         return pos_Y;
     }
 }

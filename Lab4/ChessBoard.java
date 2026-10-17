@@ -1,9 +1,8 @@
-class ChessBoard implements IntChessBoard{
+public class ChessBoard implements IntChessBoard {
 
-    public static final int MAX_ROW = 8;
-    public static final int MIN_ROW = 1;
+    // Checks if the position is within the chessboard
     @Override
-    public boolean verifyCoordinate(char X, int Y){
-        return X >= 'A' && X <= 'H' && Y >= MIN_ROW && Y <= MAX_ROW;
+    public boolean verifyCoordinate(LocationX X, int Y) {
+        return X != null && Y >= 1 && Y <= 8;
     }
 }

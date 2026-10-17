@@ -1,3 +1,3 @@
-public interface IntBishop{
-    boolean moveToBishop(char targetX, int targetY);
+public interface IntBishop {
+    boolean moveToBishop(LocationX targetX, int targetY);
 }

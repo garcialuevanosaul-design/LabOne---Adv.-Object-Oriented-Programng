@@ -1,3 +1,5 @@
+package lab4;
+
 class Rook extends Figure {
 
     // Empty Constructor

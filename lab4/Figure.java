@@ -1,20 +1,30 @@
-class Bishop implements IntBishop {
+package lab4;
+
+public abstract class Figure implements IntFigure {
+    private PieceType name;
     private Color color;
     private LocationX pos_X;
     private int pos_Y;
 
     // Empty Constructor
-    public Bishop() {
+    public Figure() {
+        name = null;
+        color = null;
+        pos_X = null;
+        pos_Y = 0;
     }
 
     // Constructor with parameters
-    public Bishop(Color pieceColor, LocationX start_pos_X, int start_pos_Y) {
+    public Figure(PieceType pieceName, Color pieceColor,
+            LocationX start_pos_X, int start_pos_Y) {
+        this.name = pieceName;
         this.color = pieceColor;
         this.pos_X = start_pos_X;
         this.pos_Y = start_pos_Y;
     }
 
     // SETTERS
+
     public void setColor(Color newColor) {
         color = newColor;
     }
@@ -28,6 +38,11 @@ class Bishop implements IntBishop {
     }
 
     // GETTERS
+
+    public PieceType getName() {
+        return name;
+    }
+
     public Color getColor() {
         return color;
     }
@@ -38,21 +53,5 @@ class Bishop implements IntBishop {
 
     public int getPos_Y() {
         return pos_Y;
-    }
-
-    // Bishop moves diagonally
-    @Override
-    public boolean moveToBishop(LocationX targetX, int targetY) {
-        int dx = Math.abs(targetX.ordinal() - getPos_X().ordinal());
-        int dy = Math.abs(targetY - getPos_Y());
-
-        return dx == dy && dx != 0;
-    }
-
-    @Override
-    public String toString() {
-        return "Color: " + getColor() + "\n"
-                + "Position X: " + getPos_X() + "\n"
-                + "Position Y: " + getPos_Y();
     }
 }

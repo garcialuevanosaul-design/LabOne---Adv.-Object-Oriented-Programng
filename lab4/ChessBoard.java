@@ -1,3 +1,5 @@
+package lab4;
+
 public class ChessBoard implements IntChessBoard {
 
     // Checks if the position is within the chessboard

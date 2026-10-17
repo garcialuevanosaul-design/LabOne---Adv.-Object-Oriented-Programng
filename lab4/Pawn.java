@@ -1,3 +1,5 @@
+package lab4;
+
 class Pawn extends Figure {
 
     // Empty Constructor

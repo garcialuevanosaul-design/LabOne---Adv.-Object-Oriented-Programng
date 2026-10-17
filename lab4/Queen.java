@@ -1,24 +1,27 @@
-class Knight extends Figure {
+package lab4;
 
-    // Empty Constructor
-    public Knight() {
-        super();
-    }
+class Queen extends Rook implements IntBishop {
 
     // Constructor with parameters
-    public Knight(PieceType pieceName, Color pieceColor,
+    public Queen(PieceType pieceName, Color pieceColor,
             LocationX start_pos_X, int start_pos_Y) {
         super(pieceName, pieceColor, start_pos_X, start_pos_Y);
     }
 
-    // Validates that the knight moves in an L-shape.
+    // Queen can move diagonally like a bishop
     @Override
-    public boolean moveTo(LocationX targetX, int targetY) {
-
+    public boolean moveToBishop(LocationX targetX, int targetY) {
         int dx = Math.abs(targetX.ordinal() - getPos_X().ordinal());
         int dy = Math.abs(targetY - getPos_Y());
 
-        return (dx == 2 && dy == 1) || (dx == 1 && dy == 2);
+        return dx == dy && dx != 0;
+    }
+
+    // Queen moves like a rook or bishop
+    @Override
+    public boolean moveTo(LocationX targetX, int targetY) {
+        return super.moveTo(targetX, targetY)
+                || moveToBishop(targetX, targetY);
     }
 
     @Override

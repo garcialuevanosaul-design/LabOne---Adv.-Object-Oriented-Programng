@@ -1,3 +1,5 @@
+package lab4;
+
 class King extends Queen {
 
     // Constructor with parameters
